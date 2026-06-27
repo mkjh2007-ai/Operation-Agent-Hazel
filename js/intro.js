@@ -57,7 +57,14 @@ const Intro = {
 
             status.innerHTML+=text[i];
 
-            Audio.type();
+            const Audio = {
+    init(){},
+    type(){},
+    hum(){},
+    beep(){}
+};
+
+window.Audio = Audio;
 
             await this.wait(40);
 
@@ -126,3 +133,5 @@ const Intro = {
     }
 
 };
+
+window.Intro = Intro;
