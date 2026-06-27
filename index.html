@@ -2,30 +2,321 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Operation Agent Hazel</title>
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>CASE FILES</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
-<div class="container">
+<!-- ========================================== -->
+<!-- FULL GAME CONTAINER -->
+<!-- ========================================== -->
 
-<h1>🕵️ OPERATION AGENT HAZEL</h1>
+<div id="game">
 
-<h2>Episode 1</h2>
+<!-- ========================================== -->
+<!-- BOOT SCREEN -->
+<!-- ========================================== -->
 
-<p id="story">
-Click Start Investigation.
+<section id="boot-screen" class="scene active">
+
+<div id="boot-background"></div>
+
+<div id="boot-led"></div>
+
+<div id="boot-terminal">
+
+<p class="terminal-line" id="boot-line1">
+INITIALIZING...
 </p>
 
-<button onclick="nextScene()">
-Start Investigation
+<p class="terminal-line hidden" id="boot-line2">
+STARTING INTERNATIONAL INVESTIGATION AGENCY
+</p>
+
+<p class="terminal-line hidden" id="boot-line3">
+VERIFYING BIOMETRICS
+</p>
+
+</div>
+
+<div id="scanner">
+
+<div id="scan-line"></div>
+
+<div id="scan-text">
+
+<p class="hidden" id="agentH">
+WELCOME AGENT H
+</p>
+
+<p class="hidden" id="agentM">
+WELCOME AGENT M
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ========================================== -->
+<!-- CRT TRANSMISSION -->
+<!-- ========================================== -->
+
+<section id="chief-scene" class="scene">
+
+<div id="crt-frame">
+
+<div id="crt-glow"></div>
+
+<div id="crt-static"></div>
+
+<div id="crt-screen">
+
+<div id="chief-video">
+
+<div id="chief-silhouette">
+
+<div id="chief-head"></div>
+
+<div id="chief-body"></div>
+
+<div id="chief-mug"></div>
+
+<div id="chief-microphone"></div>
+
+</div>
+
+</div>
+
+<div id="projection-area">
+
+<img
+id="evidence-photo"
+class="projection hidden"
+src=""
+alt="Evidence">
+
+<div
+id="evidence-caption"
+class="hidden">
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div id="subtitle-box">
+
+<p id="subtitle-text">
+
+*Ahem...*
+
+</p>
+
+</div>
+
+</section>
+
+<!-- ========================================== -->
+<!-- COURIER SCENE -->
+<!-- ========================================== -->
+
+<section id="courier-scene" class="scene">
+
+<div id="door-wall">
+
+<div id="agency-door">
+
+<div id="door-handle"></div>
+
+</div>
+
+</div>
+
+<div id="courier-container">
+
+<div id="courier">
+
+<div id="gavroche"></div>
+
+<div id="courier-head"></div>
+
+<div id="courier-glasses"></div>
+
+<div id="courier-body"></div>
+
+<div id="courier-arm"></div>
+
+<div id="coffee-cup"></div>
+
+<div id="package"></div>
+
+</div>
+
+</div>
+
+<div id="courier-dialogue">
+
+<p id="courier-text">
+
+"...why do mysteries always happen before breakfast..."
+
+</p>
+
+</div>
+
+</section>
+
+<!-- ========================================== -->
+<!-- PACKAGE OPENING -->
+<!-- ========================================== -->
+
+<section id="package-scene" class="scene">
+
+<div id="package-wrapper">
+
+<div id="country-package">
+
+<div id="package-top"></div>
+
+<div id="package-bottom"></div>
+
+<div id="package-shadow"></div>
+
+</div>
+
+<div id="open-instruction">
+
+<p>
+
+Drag the package to the center.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ========================================== -->
+<!-- CASE TITLE -->
+<!-- ========================================== -->
+
+<section id="case-title" class="scene">
+
+<div id="case-card">
+
+<p class="case-number">
+
+CASE FILE 001
+
+</p>
+
+<h1>
+
+THE MISSING PHOTOGRAPH
+
+</h1>
+
+<p class="case-location">
+
+Paris, France
+
+</p>
+
+</div>
+
+</section>
+
+<!-- ========================================== -->
+<!-- GLOBAL UI -->
+<!-- ========================================== -->
+
+<div id="global-ui">
+
+<div id="top-right-icons">
+
+<button id="phone-btn" class="ui-icon">
+
+📞
+
+</button>
+
+<button id="notes-btn" class="ui-icon">
+
+📒
+
+</button>
+
+<button id="inventory-btn" class="ui-icon">
+
+🎒
+
+</button>
+
+<button id="people-btn" class="ui-icon">
+
+👥
+
+</button>
+
+<button id="evidence-btn" class="ui-icon">
+
+📸
+
+</button>
+
+<button id="map-btn" class="ui-icon">
+
+🗺
+
 </button>
 
 </div>
 
-<script src="script.js"></script>
+</div>
+
+<!-- ========================================== -->
+<!-- AUDIO -->
+<!-- ========================================== -->
+
+<audio id="static-audio"></audio>
+
+<audio id="doorbell-audio"></audio>
+
+<audio id="door-audio"></audio>
+
+<audio id="slam-audio"></audio>
+
+<audio id="coffee-audio"></audio>
+
+<audio id="typing-audio"></audio>
+
+<audio id="crt-audio"></audio>
+
+<!-- ========================================== -->
+<!-- JAVASCRIPT -->
+<!-- ========================================== -->
+
+<script src="intro.js"></script>
+
+</div>
 
 </body>
+
 </html>
