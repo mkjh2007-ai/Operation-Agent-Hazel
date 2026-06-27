@@ -1,148 +1,127 @@
-/* ======================================
-   CASE FILES
-   INTRO CONTROLLER
-====================================== */
-
 const Intro = {
 
-    async start(){
+    async start() {
 
         await this.wait(2000);
 
-        this.blinkLED();
+        this.led(true);
 
-        await this.typeStatus("INITIALIZING...");
+        await this.type("INITIALIZING...");
+        await this.fade();
 
-        await this.fadeStatus();
+        await this.type("ACCESSING ARCHIVE...");
+        await this.fade();
 
-        await this.typeStatus("ACCESSING ARCHIVE...");
+        document.getElementById("scanner").style.opacity = 1;
+        document.getElementById("scanner").style.animation = "scanDown 2s linear";
 
-        await this.fadeStatus();
+        await this.type("SCANNING FACIAL RECOGNITION...");
+        await this.wait(2200);
 
-        await this.scan();
+        document.getElementById("scanner").style.opacity = 0;
 
-        await this.typeStatus("SCANNING FACIAL RECOGNITION...");
+        await this.fade();
 
-        await this.wait(2300);
+        document.getElementById("led").classList.add("green");
 
-        await this.fadeStatus();
+        await this.type("IDENTITY VERIFIED");
+        await this.wait(900);
 
-        document
-            .getElementById("led")
-            .classList
-            .add("green");
+        await this.fade();
 
-        await this.typeStatus("IDENTITY VERIFIED");
+        await this.type("ACCESS GRANTED");
+        await this.wait(1000);
 
+        await this.fade();
+
+        await this.type("WELCOME AGENT H");
         await this.wait(1200);
 
-        await this.fadeStatus();
+        await this.fade();
 
-        await this.typeStatus("WELCOME AGENT H");
-
-        await this.wait(1200);
-
-        await this.fadeStatus();
-
-        await this.typeStatus("WELCOME AGENT M");
-
-        await this.wait(1700);
+        await this.type("WELCOME AGENT M");
+        await this.wait(1400);
 
         this.openCRT();
 
     },
 
+    async type(text){
 
+        const status=document.getElementById("status");
 
-    async typeStatus(text){
-
-        const box=document.getElementById("status");
-
-        box.innerHTML="";
+        status.innerHTML="";
 
         for(let i=0;i<text.length;i++){
 
-            box.innerHTML+=text[i];
+            status.innerHTML+=text[i];
 
             Audio.type();
 
-            await this.wait(42);
+            await this.wait(40);
 
         }
 
     },
 
-
-
-    fadeStatus(){
+    fade(){
 
         return new Promise(resolve=>{
 
-            const box=document.getElementById("status");
+            const s=document.getElementById("status");
 
-            box.animate([
-
-                {opacity:1},
-
-                {opacity:0}
-
-            ],{
-
-                duration:500,
-
-                fill:"forwards"
-
-            });
+            s.animate(
+                [
+                    {opacity:1},
+                    {opacity:0}
+                ],
+                {
+                    duration:450,
+                    fill:"forwards"
+                }
+            );
 
             setTimeout(()=>{
 
-                box.innerHTML="";
-
-                box.style.opacity=1;
+                s.innerHTML="";
+                s.style.opacity=1;
 
                 resolve();
 
-            },500);
+            },450);
 
         });
 
     },
 
+    led(on){
 
+        if(on){
 
-    blinkLED(){
+            document.getElementById("led").style.animation="ledBlink .8s infinite";
 
-        document
-
-            .getElementById("led")
-
-            .style
-
-            .animation="ledBlink .8s infinite";
+        }
 
     },
 
+    openCRT(){
 
+        document.getElementById("intro").style.display="none";
 
-    scan(){
+        const t=document.getElementById("transform");
 
-        return new Promise(resolve=>{
+        t.style.display="flex";
 
-            const scanner=document.getElementById("scanner");
+        document.getElementById("monitor").style.animation="crtBoot .9s forwards";
 
-            scanner.style.opacity=1;
-
-            scanner.style.animation="scanDown 1.8s linear";
-
-            setTimeout(()=>{
-
-                scanner.style.opacity=0;
-
-                resolve();
-
-            },1800);
-
-        });
+        // Chief starts here later
 
     },
-    
+
+    wait(ms){
+
+        return new Promise(r=>setTimeout(r,ms));
+
+    }
+
+};
