@@ -1,3 +1,4 @@
+console.log("INTRO LOADED");
 const Intro = {
 
     async start() {
