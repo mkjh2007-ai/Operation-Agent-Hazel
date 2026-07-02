@@ -1,0 +1,40 @@
+#intro,#transform{position:fixed;inset:0;background:#030405;display:flex;align-items:center;justify-content:center;overflow:hidden}
+#transform{display:none}
+#intro::before,#transform::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.045) 1px,transparent 1px);background-size:3px 3px;opacity:.16;animation:grain 4s steps(6) infinite}
+#intro::after,#transform::after{content:"";position:absolute;inset:0;background:radial-gradient(circle,transparent 38%,rgba(0,0,0,.55) 72%,#000 100%);pointer-events:none}
+#led{position:absolute;top:42%;width:11px;height:11px;border-radius:50%;background:#b01717;box-shadow:0 0 10px #d82020,0 0 22px #7c0000;opacity:0}
+#led.on{opacity:1;animation:ledBlink 1s infinite}
+#led.green{background:#6fff88;box-shadow:0 0 12px #6fff88,0 0 30px #48ff64}
+#terminal{position:relative;z-index:2;text-align:center}
+#terminal h1{opacity:0}
+#status{font-family:"IBM Plex Mono",monospace;font-size:18px;letter-spacing:4px;color:#d7dde0;text-shadow:0 0 10px rgba(150,190,210,.35);min-height:28px}
+#scanner{position:absolute;left:50%;top:50%;width:70vw;height:2px;transform:translate(-50%,-50%);opacity:0;background:linear-gradient(90deg,transparent,#d62929,transparent);box-shadow:0 0 16px #d62929}
+#monitor{width:min(760px,78vw);height:min(480px,58vh);opacity:0;transform:scale(.65)}
+#monitor-frame{width:100%;height:100%;padding:28px;border-radius:28px;background:linear-gradient(145deg,#23282c,#0b0d0f);border:5px solid #424b52;box-shadow:0 35px 90px rgba(0,0,0,.8),inset 0 0 35px rgba(255,255,255,.06)}
+#crt{position:relative;width:100%;height:100%;overflow:hidden;border-radius:20px;background:radial-gradient(circle,#6f8791 0%,#586d76 40%,#34444c 75%,#172027 100%);box-shadow:inset 0 0 90px rgba(255,255,255,.08),inset 0 0 200px rgba(80,140,160,.18),0 0 70px rgba(120,170,190,.18)}
+#scanlines{position:absolute;inset:0;background:repeating-linear-gradient(to bottom,rgba(255,255,255,.035) 0 1px,transparent 1px 4px);opacity:.55;pointer-events:none}
+#noise{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.12) .5px,transparent .5px);background-size:4px 4px;opacity:.12;mix-blend-mode:overlay;animation:noise .18s infinite}
+#flicker{position:absolute;inset:0;background:white;opacity:0;animation:flicker 7s infinite}
+#reflection{position:absolute;top:0;left:-30%;width:45%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent);transform:skewX(-25deg);opacity:.22}
+.corner{position:absolute;width:22px;height:22px;border:2px solid rgba(210,230,240,.16)}
+.corner:nth-of-type(1){top:12px;left:12px;border-right:0;border-bottom:0}
+.corner:nth-of-type(2){top:12px;right:12px;border-left:0;border-bottom:0}
+.corner:nth-of-type(3){bottom:12px;left:12px;border-right:0;border-top:0}
+.corner:nth-of-type(4){bottom:12px;right:12px;border-left:0;border-top:0}
+#chief{position:absolute;left:50%;bottom:105px;width:250px;height:270px;transform:translateX(-50%);animation:chiefIdle 5s ease-in-out infinite}
+#chiefSprite{display:none}
+#chief::before{content:"";position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:170px;height:250px;background:linear-gradient(#111,#050505);clip-path:polygon(38% 0,62% 0,70% 18%,68% 33%,82% 100%,18% 100%,32% 33%,30% 18%);filter:blur(1px);opacity:.78}
+#projection{display:none}
+#chiefDialogue{position:absolute;left:50%;bottom:36px;transform:translateX(-50%);width:78%;min-height:115px;padding:22px 28px;border-radius:14px;background:rgba(8,12,15,.68);border:1px solid rgba(170,205,220,.22);box-shadow:0 0 30px rgba(90,150,175,.12),inset 0 0 22px rgba(255,255,255,.03)}
+#speaker{font-size:12px;letter-spacing:6px;color:#a9cad5;margin-bottom:12px}
+#subtitle{font-size:18px;line-height:1.7;color:#edf4f6;letter-spacing:.4px}
+#subtitle::after{content:"▋";margin-left:5px;color:#a8cad6;animation:cursor .8s infinite}
+
+@keyframes ledBlink{0%,45%,100%{opacity:1}50%{opacity:.25}}
+@keyframes grain{0%{transform:translate(0)}25%{transform:translate(-8px,5px)}50%{transform:translate(7px,-4px)}75%{transform:translate(-5px,8px)}100%{transform:translate(0)}}
+@keyframes scanDown{0%{transform:translate(-50%,-38vh);opacity:1}50%{transform:translate(-50%,38vh);opacity:1}100%{transform:translate(-50%,-38vh);opacity:1}}
+@keyframes noise{to{transform:translateY(-4px)}}
+@keyframes flicker{0%,95%,100%{opacity:0}96%{opacity:.08}98%{opacity:.04}}
+@keyframes cursor{50%{opacity:0}}
+@keyframes chiefIdle{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(5px)}}
+@keyframes crtBoot{0%{opacity:0;transform:scale(.3) rotateX(65deg)}55%{opacity:1;transform:scale(1.05) rotateX(0)}100%{opacity:1;transform:scale(1)}}
